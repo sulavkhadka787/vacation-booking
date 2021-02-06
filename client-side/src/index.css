@@ -1,0 +1,163 @@
+
+:root{
+    --header-height:4rem;
+    --font-semi:600;
+}
+
+/* =============MARGINS========== */
+:root{
+    --mb-4:2rem;
+}
+
+/* ===============COLORS======== */
+:root{
+    --dark-color:black;
+    --first-color:#E55947;
+}
+
+/* ========FONTS============= */
+:root{
+    --normal-font-size:1.5rem;
+}
+/* ============BASE============= */
+*,::before,::after{
+    box-sizing: border-box;
+}
+
+body{
+    font-size:var(--normal-font-size);
+}
+
+ul{
+    margin:0;
+    padding:0;
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+    color:var(--dark-color);
+}
+
+.logo-s{
+    color:red;
+    font-weight: 900;
+    font-size: 2.5rem;
+}
+.l-header{
+    background: linear-gradient(grey,white);
+    top:0;
+    left:0;
+}
+
+
+/* ================NAV=============== */
+.nav{
+    display: flex;
+    justify-content:space-between;
+    padding:10px;
+}
+
+.nav_item{
+    margin-left: var(--mb-4);
+}
+
+.nav__link{
+    color:var(--dark-color);
+    font-weight: var(--font-semi);
+}
+
+.nav__link:hover{
+    color:var(--first-color);
+}
+.material-icons{
+    display: none;
+}
+
+.nav__list{
+    display: flex;
+}
+
+/* ==============MAIN============ */
+
+main{
+    display: grid;
+    grid-template-columns: 1fr;
+    margin-top:20px;
+    background: linear-gradient(grey,white);
+    padding-bottom:20px;
+}
+
+main img{
+    width:100%;
+    height:auto;
+}
+
+.destination{
+    width:80%;
+    display:flex;
+    margin:auto;
+    margin-top:20px;
+}
+
+.destination select{
+    width:60%;
+    padding:10px;
+    border-radius:8px;
+    margin-right:10px;
+    color:#E55947;
+    border:1px dotted green;
+}
+
+.date-picker{
+    font-size:20px;
+    color:#E55947;
+}
+.date-pick{
+    padding:10px;
+    border-radius: 10px;
+    color:#E55947;
+    border:1px solid green;
+}
+
+@media screen and (max-width:768px){
+
+    .logo-s{
+        color:red;
+        font-weight: 700;
+        font-size: 2rem;
+    }
+
+    .nav_menu{
+        display: none;
+    }
+
+    #login-id{
+        display: none;
+    }
+
+    .nav{
+        display: flex;
+    }
+
+    #nav-toggle{
+        display: block;
+    }
+
+    .destination{
+        width:90%;
+        display:flex;
+        flex-direction: column;
+
+    }
+    .destination select{
+        width:100%;
+    }
+    .date-picker{
+        display: flex;
+        flex-direction: column;
+        margin-top:20px;
+
+    }
+
+}
