@@ -2,11 +2,22 @@ import React from 'react';
 
 const App=()=> {
   const toggle=()=>{
-    //
+    let sidebar=document.getElementById("toggle-menu");
+    sidebar.classList.toggle('active');
   }
   return (
     <div>
+        
         <header className="l-header">
+            <div className="toggle-menu" id="toggle-menu">
+                <ul  className="tog__list">
+                    <li className="tog_item"><a href="" className="tog__link">Login</a></li>
+                    <li className="tog_item"><a href="" className="tog__link">Deals</a></li>
+                    <li className="tog_item"><a href="" className="tog__link">Pacakages</a></li>
+                    <li className="tog_item"><a href="" className="tog__link">Destinations</a></li>
+                    <li className="tog_item"><a href="" className="tog__link">Activities</a></li>
+                </ul>  
+            </div>
            <nav className="nav bd-grid">
                 <div className="logo-header">
                     <i className='fas fa-umbrella-beach' style={{fontSize:'48px',color:'rgb(9, 100, 143)'}}></i><span><i className="logo-s">S</i>hangri-La Travels</span>
@@ -21,7 +32,7 @@ const App=()=> {
                             </ul>  
                 </div>
                 <div>
-                        <i  className="material-icons" style={{fontSize:'48px',color:'red'}} id="nav-toggle">apps</i>
+                        <i  onClick={toggle}className="material-icons" style={{fontSize:'48px',color:'red'}} id="nav-toggle">apps</i>
                         <i className='fas fa-user-plus' style={{fontSize:'36px'}} id="login-id"></i>         
                 </div>
                 
