@@ -26,6 +26,7 @@
 
 body{
     font-size:var(--normal-font-size);
+    margin:0px 100px;
 }
 
 ul{
@@ -80,6 +81,9 @@ a{
 .nav__list{
     display: flex;
 }
+#login-id{
+    cursor: pointer;
+}
 
 /* ==============MAIN============ */
 
@@ -121,9 +125,14 @@ main img{
     border-radius: 10px;
     color:#E55947;
     border:1px solid green;
+    outline: none;
 }
 
 @media screen and (max-width:768px){
+    body{
+        font-size:var(--normal-font-size);
+        margin:0px;
+    }
     .nav{
         z-index:11;
     }

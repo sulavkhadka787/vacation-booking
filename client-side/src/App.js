@@ -1,66 +1,53 @@
-import React from 'react';
+import React,{useEffect} from 'react';
+import {Switch,Route} from 'react-router-dom';
+import Login from './authentication/login';
+import {ToastContainer} from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
+
+
+
+import Register from './authentication/register';
+import Home from './Home';
+import RegisterComplete from './authentication/registerComplete';
+
+import {auth} from './firebase/firebase';
+import {useDispatch} from 'react-redux';
 
 const App=()=> {
-  const toggle=()=>{
-    let sidebar=document.getElementById("toggle-menu");
-    sidebar.classList.toggle('active');
-  }
+
+  const dispatch=useDispatch();
+
+  //to check firebase auth state
+  useEffect(()=>{
+    const unsubscribe=auth.onAuthStateChanged(async(user)=>{
+      if(user){
+        const idTokenResult=await user.getIdTokenResult();
+        console.log("user",user);
+        dispatch({
+          type:'LOGGED_IN_USER',
+          payload:{
+            name:user.email,
+            token:idTokenResult.token
+          }
+        })
+
+      }
+    })
+  })
+  
   return (
-    <div>
-        
-        <header className="l-header">
-            <div className="toggle-menu" id="toggle-menu">
-                <ul  className="tog__list">
-                    <li className="tog_item"><a href="" className="tog__link">Login</a></li>
-                    <li className="tog_item"><a href="" className="tog__link">Deals</a></li>
-                    <li className="tog_item"><a href="" className="tog__link">Pacakages</a></li>
-                    <li className="tog_item"><a href="" className="tog__link">Destinations</a></li>
-                    <li className="tog_item"><a href="" className="tog__link">Activities</a></li>
-                </ul>  
-            </div>
-           <nav className="nav bd-grid">
-                <div className="logo-header">
-                    <i className='fas fa-umbrella-beach' style={{fontSize:'48px',color:'rgb(9, 100, 143)'}}></i><span><i className="logo-s">S</i>hangri-La Travels</span>
-                </div>
+      <>
+      <ToastContainer />
+        <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/register" component={Register}/>
+            <Route exact path="/register/complete" component={RegisterComplete} />
+        </Switch>
+      </>
     
-                <div className="nav_menu" id="nav-menu">
-                            <ul  className="nav__list">
-                                <li className="nav_item"><a href="" className="nav__link">Deals</a></li>
-                                <li className="nav_item"><a href="" className="nav__link">Pacakages</a></li>
-                                <li className="nav_item"><a href="" className="nav__link">Destinations</a></li>
-                                <li className="nav_item"><a href="" className="nav__link">Activities</a></li>
-                            </ul>  
-                </div>
-                <div>
-                        <i  onClick={toggle}className="material-icons" style={{fontSize:'48px',color:'red'}} id="nav-toggle">apps</i>
-                        <i className='fas fa-user-plus' style={{fontSize:'36px'}} id="login-id"></i>         
-                </div>
-                
-            </nav>
-        </header> 
-        <main>
-            <div>
-                <img src="images/coverpic.jpeg" />
-            </div>
-            <div className="destination">
-                <select>
-                    <option>Select Your Vacation Destination</option>
-                    <option>Everest Base Camp</option>
-                    <option>Upper Mustang</option>
-                    <option>Kathmandu Valley</option>
-                    <option>Lumbini</option>
-                </select>
-                <div className="date-picker">
-                    <label>Check-In</label><input type="date" className="date-pick" id="dp-1" />
-                </div>
-                
-                <div className="date-picker">
-                    <label>Check-Out</label><input type="date" className="date-pick" id="dp-2" />
-                </div> 
-            </div>
-            
-        </main>
-    </div>
+
+
   );
 }
 
